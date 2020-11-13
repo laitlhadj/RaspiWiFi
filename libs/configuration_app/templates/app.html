@@ -1,42 +1,29 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div id="mainContent">
-    <div id="wpaStatus">
-      <ul>
-        {% if config_hash['wpa_enabled'] == '1': %}
-          <li><a href="{{ url_for('wpa_settings') }}">Config. Mode WPA: ENABLED</a></li>
-          <li><a href="{{ url_for('wpa_settings') }}">Key: {{ config_hash['wpa_key'] }}</a></li>
-        {% endif %}
-
-        {% if config_hash['wpa_enabled'] == '0': %}
-          <li><a href="{{ url_for('wpa_settings') }}">Config. Mode WPA: DISABLED</a></li>
-      {% endif %}
-      </ul>
-    </div>
-
-    <h1>WiFi Setup</h1>
-    <div class="wifiIcon"></div>
-
-    <form action="{{ url_for('save_credentials') }}" method=post>
-      <ul>
-        <li><label for="ssid">Select your WiFi network</label></li>
-
-        <li class="wifiNetwork">
-          <select id="ssid" name="ssid", class="wifiNetworkInputs">
-            {% for ssid in wifi_ap_array %}
-              <option value='{{ ssid }}'>{{ ssid }}</option>
-            {% endfor %}
-          </select>
-        </li>
-
-        <li><a href="{{ url_for('manual_ssid_entry') }}" class="manualSSIDEntry">manual SSID entry -></a></li>
-
-        <li><label for="wifi_key">Your Wifi password</label></li>
-        <li><input type="password" name="wifi_key", class="wifiNetworkInputs"></li>
-
-        <input type="submit", class="wifiConnectButton">
-      </ul>
-    </form>
+<form action="{{ url_for('save_credentials') }}" method=post class="form-container">
+  <h6 style="text-align: center; font-weight: bold">CONNEXION WIFI</h6>
+  <br />
+  <div class="form-group">
+    <label>Séléctionner votre WIFI</label>
+    <select id="ssid" name="ssid" , class="form-control">
+      {% for ssid in wifi_ap_array %}
+      <option value='{{ ssid }}'>{{ ssid }}</option>
+      {% endfor %}
+    </select>
   </div>
+  <div class="form-group">
+    <label>Saisir le mot de passe WIFI</label>
+    <input type="password" name="wifi_key" class="form-control input_pass" value="" placeholder="XXXXXXX">
+  </div>
+  <div class="d-flex justify-content-center mt-3 login_container">
+    <button type="submit" name="button" class="btn login_btn">CONNEXION</button>
+  </div>
+</form>
+
+
+
+
+
+
 {% endblock %}
