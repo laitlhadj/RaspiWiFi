@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<form action="{{ url_for('save_credentials') }}" method=post class="form-container">
+<form action="{{ url_for('save_credentials') }}" method=post class="form-container"
+  style="width: 100%; padding: 0px 30px;">
   <h6 style="text-align: center; font-weight: bold">CONNEXION WIFI</h6>
   <br />
   <div class="form-group">
@@ -12,7 +13,7 @@
       {% endfor %}
     </select>
   </div>
-  <div class="form-group">
+  <div class="form-group" style="margin-bottom: 30px">
     <label>Saisir le mot de passe WIFI</label>
     <input type="password" name="wifi_key" class="form-control input_pass" value="" placeholder="XXXXXXX">
   </div>
